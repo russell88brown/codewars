@@ -23,13 +23,14 @@ if (arraySum = originalNumber) {
 console.log(augArray)
 */
 
-// calculation to take an array of numbers, check each number against array, and insert into new augented array
+/* calculation to take an array of numbers, check each number against array, and insert into new augented array
 
 
-var originalArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 50, 77, 32, 89]
+originalArray = [1,2,3,4,5,6,7,8,9,77,89,130,140];
 tempArray = [];
 arraySum = [];
 augArray =[];
+
 
 
 for (i = 0; i < originalArray.length; i++) {
@@ -44,6 +45,40 @@ for (i = 0; i < originalArray.length; i++) {
 	if (arraySum == originalArray[i]) {
 		console.log('yes')
 		augArray.push(originalArray[i]);
+	} else {
+		console.log('no')
+	}
+}
+console.log(augArray);
+
+*/
+
+originalArray = [];
+tempArray = [];
+arraySum = [];
+augArray =[];
+
+var a = 1
+var b = 500
+
+for (i = a; i < b + 1; i++) {
+	originalArray.push(i);
+}
+console.log(originalArray);
+console.log('!!! Created Array between a and b !!!');
+
+for (ii = 0; ii < originalArray.length; ii++) {
+	tempArray = originalArray[ii].toString().split("");
+	console.log('tempArray for calc: ' + tempArray)
+	arraySum = 0
+	for (iii = 0; iii < tempArray.length; iii++) {
+		arraySum = arraySum + Math.pow(tempArray[iii],iii+1);
+		console.log('array sum step #' + iii + " - " + 'running sum: ' + arraySum)
+	}
+	console.log('arraySum: ' + arraySum + ' - ' + 'original number: ' + originalArray[ii]);
+	if (arraySum == originalArray[ii]) {
+		console.log('yes')
+		augArray.push(originalArray[ii]);
 	} else {
 		console.log('no')
 	}
