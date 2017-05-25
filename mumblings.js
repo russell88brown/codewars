@@ -17,7 +17,7 @@ function accum(inputString) {
 		if (ii = 0) { 
 			newString = newString + inputString.substring(i,i+1).toUpperCase();
 		} else {
-			newString = newString + inputString.substring(i,i+1)}.toLowerCase();
+			newString = newString + inputString.substring(i,i+1).toLowerCase();
 		} ;
 	}
 	return newString;
