@@ -6,19 +6,14 @@ accum("RqaEzty"); // "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
 accum("cwAt");    // "C-Ww-Aaa-Tttt"
 */
 
-var newString
-
-function accum(inputString) {
-  newString = ''
-  stringLength = inputString.length;
+function accum(s) {
+newString = ''
+  stringLength = s.length;
   for ( i = 0; i < stringLength ; i++) {
     if (i != 0) {newString = newString + '-'};
-    for ( j = 0; j < 1 + i ; j++) {
-    if (j = 0) { 
-        newString = newString + inputString.substring(i,i+1).toUpperCase();
-    } else {
-        newString = newString + inputString.substring(i,i+1).toLowerCase();
-      }
+    newString += s.substring(i,i+1).toUpperCase()
+    for ( j = 0; j < i ; j++) { 
+        newString += s.substring(i,i+1).toLowerCase()
     }
   }
   return newString;
@@ -27,3 +22,17 @@ function accum(inputString) {
 console.log(accum("abcd"));
 console.log(accum("RqaEzty"));
 console.log(accum("cwAt"));
+
+/*
+top answer:
+*/
+
+function accumTop(s) {
+  return s.split('').map((x,index) => x.toUpperCase()+Array(index+1).join(x.toLowerCase())).join('-');
+}
+
+console.log(accumTop("abcd"));
+console.log(accumTop("RqaEzty"));
+console.log(accumTop("cwAt"));
+
+
