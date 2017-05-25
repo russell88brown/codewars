@@ -87,7 +87,7 @@ console.log(augArray);
 
 */
 
-// completed solution for code academy
+// function solution
 
 function sum_dig_pow(a, b) {
 	originalArray = [];
@@ -116,5 +116,27 @@ console.log(sum_dig_pow(10, 100));
 console.log(sum_dig_pow(90, 100));
 console.log(sum_dig_pow(89, 135));
 
+
+//  code academy bullshit
+
+def sum_dig_pow(a, b): # range(a, b + 1) will be studied by the function
+	originalArray = [];
+	for (i = a; i < b + 1; i++) {
+	    originalArray.push(i);
+    } 
+    augArray = [];
+    for (ii = 0; ii < originalArray.length; ii++) {
+	    tempArray = originalArray[ii].toString().split("");
+	    arraySum = 0;
+	    for (iii = 0; iii < tempArray.length; iii++) {
+		    arraySum = arraySum + Math.pow(tempArray[iii],iii+1);
+		}
+	    if (arraySum == originalArray[ii]) {
+		    augArray.push(originalArray[ii]);
+        }
+    }
+    return augArray
+    
+function 
 
 
