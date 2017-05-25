@@ -14,11 +14,13 @@ function accum(inputString) {
 	for ( i = 0; i < stringLength ; i++) {
 		if (i != 0) {newString = newString + '-'};
 		for (ii = 0; ii < i+1; ii++) {
-		if (ii = 0) { newString = newString + inputString.substring(i,i+1)};
-		if (ii != 0) { newString = newString + inputString.substring(i,i+1)};
-		}
+		if (ii = 0) { 
+			newString = newString + inputString.substring(i,i+1).toUpperCase();
+		} else {
+			newString = newString + inputString.substring(i,i+1)}.toLowerCase();
+		} ;
 	}
-	return newString
+	return newString;
 }
 
 console.log(accum("abcd"));
