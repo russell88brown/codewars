@@ -89,16 +89,16 @@ console.log(augArray);
 
 // function solution
 
-function sum_dig_pow(a, b) {
-	originalArray = [];
-	for (i = a; i < b + 1; i++) {
+function sumDigPow(a, b) {
+  var originalArray = [];
+	for (var i = a; i < b + 1; i++) {
 	    originalArray.push(i);
     } 
-    augArray = [];
-    for (ii = 0; ii < originalArray.length; ii++) {
-	    tempArray = originalArray[ii].toString().split("");
-	    arraySum = 0;
-	    for (iii = 0; iii < tempArray.length; iii++) {
+    var augArray = [];
+    for (var ii = 0; ii < originalArray.length; ii++) {
+	    var tempArray = originalArray[ii].toString().split("");
+	    var arraySum = 0;
+	    for (var iii = 0; iii < tempArray.length; iii++) {
 		    arraySum = arraySum + Math.pow(tempArray[iii],iii+1);
 		}
 	    if (arraySum == originalArray[ii]) {
@@ -107,6 +107,7 @@ function sum_dig_pow(a, b) {
     }
     return augArray
 }
+
 
 
 console.log(sum_dig_pow(1, 10));
