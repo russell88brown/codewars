@@ -1,9 +1,11 @@
-/* 
+/*
+Code Academy - Eureka - for a given sequantial array, do the sum of the difits to the power of its position, equal the original number.
+
 https://www.codewars.com/kata/take-a-number-and-sum-its-digits-raised-to-the-consecutive-powers-and-dot-dot-dot-eureka
 steps: 
 */
 
-// function solution my answer
+// function solution - my answer
 console.log('my answer')
 
 function sumDigPow(a, b) {
@@ -27,7 +29,7 @@ function sumDigPow(a, b) {
 
 console.log(sumDigPow(1, 10000000));
 
-/* answer one - issue with syntax
+// answer one - issue with syntax
 console.log('code wars answer 1')
 
 function sumDigPowAnswerOne(a, b) {
@@ -41,9 +43,9 @@ function sumDigPowAnswerOne(a, b) {
 }
 
 console.log(sumDigPowAnswerOne(1, 10000000));
-*/
 
-//answer two
+
+//answer two - issue with syntax
 console.log('codewars answer 2')
 
 function filterFunc(n) {
