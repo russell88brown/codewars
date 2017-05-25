@@ -1,5 +1,5 @@
 /*
-Code Academy - Eureka - for a given sequantial array, do the sum of the difits to the power of its position, equal the original number.
+Code Academy - Take a Number And Sum Its Digits Raised To The Consecutive Powers And [does it equal the original number]....¡Eureka!
 
 https://www.codewars.com/kata/take-a-number-and-sum-its-digits-raised-to-the-consecutive-powers-and-dot-dot-dot-eureka
 steps: 
@@ -28,6 +28,7 @@ function sumDigPow(a, b) {
 }
 
 console.log(sumDigPow(1, 10000000));
+
 
 // answer one - issue with syntax
 console.log('code wars answer 1')
