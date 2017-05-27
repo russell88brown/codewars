@@ -16,15 +16,19 @@ https://www.codewars.com/kata/maze-runner/
 var maze = [[1,1,1,1,1,1,1],
             [1,0,0,0,0,0,3],
             [1,0,1,0,1,0,1],
-            [0,0,1,0,0,0,1],
+            [0,0,0,0,0,0,1],
             [1,0,1,0,1,0,1],
             [1,0,0,0,0,0,1],
             [1,2,1,0,1,0,1]];
 
-var position = [0,0]
+
+var position = [0,0];
 var directionsDictionary = {N:[-1,0], S:[1,0], E:[0,1], W:[0,-1]}; //object dictionary for coords
-var nextPosition = []
-var kill = false
+var nextPosition = [];
+var nextVariable = [];
+var outcome = false;
+var a;
+var b;
 
 function determinePosition() {
       return [6,1];
@@ -32,54 +36,66 @@ function determinePosition() {
 
 function getNextPosition(coordGet) {
       for (i = 0; i < 2; i++) {
-            nextPosition[i] = position[i] + coordGet[i]
+            nextPosition[i] = position[i] + coordGet[i];
             if (nextPosition[i] < 0 || nextPosition > 6) {
-                  kill = true;
+                  sumDigPow = 'dead';
             }
       }
-      return
+      return;
 }
 
 function checkNextPosition() {
-      for (ii = 0)
-      console.log(nextPosition)
-      console.log(inputMaze[nextPosition])
-      if (inputMaze[nextPosition] == 1) {
+      console.log('checking a step in this direction' + coord);
+      a = nextPosition[0];
+      b = nextPosition[1];
+      nextVariable = inputMaze[a][b];
+      if (nextVariable == 1) {
             console.log('you walked into a wall');
-            kill = true;
-      } else if (inputMaze[nextPosition] == 2) {
+            outcome = 'dead';
+      } else if (nextVariable == 2) {
             console.log('you found the start again');
-            kill = true;
-      } else if (inputMaze[nextPosition] == 3) {
+            outcome = 'dead';
+      } else if (nextVariable == 3) {
             console.log('you found the finnish');
-            console.log('you did it in: ' + i + ' steps');
-      kill = true;
+            outcome = 'Finish';
       } else {
-            console.log('keep walking')
+            console.log('keep walking');
       }
 }
 
 
 function mazeRunner(givenMaze, yourDirections) {
-      inputMaze = givenMaze
-      position = determinePosition()
-      console.log(position)
+      inputMaze = givenMaze;
+      position = determinePosition();
+      console.log('#####################################');
+      console.log('#    you start on poition: ' + position + "      #");
+      console.log('#####################################');
       for (index = 0; index < yourDirections.length; index++) {
-            console.log('moving: ' + yourDirections[index])
-            coord = directionsDictionary[yourDirections[index]]
-            getNextPosition(coord)
-            checkNextPosition()
-            position = nextPosition
-            console.log('new position' + position)
+            coord = directionsDictionary[yourDirections[index]];
+            console.log('step' + (index + 1) + ' : ' + yourDirections[index]);
+            getNextPosition(coord);
+            checkNextPosition();
+            console.log('### your new position is: ' + nextPosition + " #######");
+            index = (outcome!=false) ? yourDirections.length: index ;
+            position = nextPosition;
       }
+      outcome = (outcome!=false) ? 'lost': outcome ;
+      return outcome;
+      var outcome = false
 }
 
-mazeRunner(maze,["N","E","N","E","N","E","E","S"]);
+//mazeRunner(maze,["N","N","N","N","N","E","E","E","E","E"]) // "Finish", "Expected Finish");
+//mazeRunner(maze,["N","N","N","N","N","E","E","S","S","E","E","N","N","E"]) // "Finish", "Expected Finish");
+//mazeRunner(maze,["N","N","N","N","N","E","E","E","E","E","W","W"]) // "Finish", "Expected Finish");
+mazeRunner(maze,["N","N","N","W","W"]) // "Dead", "Expected Dead");
+mazeRunner(maze,["N","N","N","N","N","E","E","S","S","S","S","S","S"]) // "Dead", "Expected Dead");
+mazeRunner(maze,["N","E","E","E","E"]) // "Lost", "Expected Lost");
+
 
 /*
 var position = [6,0]; //original position
 var coord = [0,0] // store the next movement
-var kill = false // end program after a failed check
+var ` = false // end program after a failed check
 
 
 function calculateNext(current, movment) {
