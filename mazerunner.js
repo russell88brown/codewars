@@ -22,31 +22,59 @@ var maze = [[1,1,1,1,1,1,1],
             [1,2,1,0,1,0,1]];
 
 var position = [0,0]
-var directionsDictionary = {N:[0,1], S:[0,-1], E:[1,0], W:[-1,0]}; //object dictionary for coords
-
+var directionsDictionary = {N:[-1,0], S:[1,0], E:[0,1], W:[0,-1]}; //object dictionary for coords
+var nextPosition = []
+var kill = false
 
 function determinePosition() {
       return [6,1];
 }
 
-function getNextPosition() {
-      return;
+function getNextPosition(coordGet) {
+      for (i = 0; i < 2; i++) {
+            nextPosition[i] = position[i] + coordGet[i]
+            if (nextPosition[i] < 0 || nextPosition > 6) {
+                  kill = true;
+            }
+      }
+      return
 }
 
 function checkNextPosition() {
-      return;
-}
-
-
-function mazeRunner(inputMaze, yourDirections) {
-      position = determinePosition()
-      for (index = 0; index < yourDirections.length; index++) {
-            coord = directionsDictionary[yourDirections[index]]
-            
+      for (ii = 0)
+      console.log(nextPosition)
+      console.log(inputMaze[nextPosition])
+      if (inputMaze[nextPosition] == 1) {
+            console.log('you walked into a wall');
+            kill = true;
+      } else if (inputMaze[nextPosition] == 2) {
+            console.log('you found the start again');
+            kill = true;
+      } else if (inputMaze[nextPosition] == 3) {
+            console.log('you found the finnish');
+            console.log('you did it in: ' + i + ' steps');
+      kill = true;
+      } else {
+            console.log('keep walking')
       }
 }
 
-mazeRunner(maze,["N","S","E","W","N","S","E","W"]);
+
+function mazeRunner(givenMaze, yourDirections) {
+      inputMaze = givenMaze
+      position = determinePosition()
+      console.log(position)
+      for (index = 0; index < yourDirections.length; index++) {
+            console.log('moving: ' + yourDirections[index])
+            coord = directionsDictionary[yourDirections[index]]
+            getNextPosition(coord)
+            checkNextPosition()
+            position = nextPosition
+            console.log('new position' + position)
+      }
+}
+
+mazeRunner(maze,["N","E","N","E","N","E","E","S"]);
 
 /*
 var position = [6,0]; //original position
