@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<script type="text/javascript">
+	
+	var number_of_sequences = 100;
+	var sequence_length = 20;
+	var original_sequence = [];
+	var sequences = [] // population
+	var number_of_generations = 100;
+	var mutation_rate = 0.0001; // per base and generation
+
+	var BASES = ['A','G','C',"T"];
+
+	// return a random base [a, g, d, t]
+	function random_base(current_base) {
+		var new_base;
+		do {
+			var index = Math.floor(Math.random() * 4);
+			new_base = BASES[index];
+		} while (current_base == new_base);
+		return new_base;
+	}
+
+	// push random base into original sequence
+	function generate_first_sequence() {
+		for (var i = 0; i < sequence_length; i = i + 1) {
+			original_sequence.push(random_base(""))
+		}
+	}
+
+	// generate the first sequence
+	function generate_first_generation() {
+		generate_first_sequence()
+		for (var i = 0; i < number_of_sequences; i = i + 1) {
+			sequences.push(original_sequence.slice())
+		}
+	}
+
+	// console.log for print
+	function print_sequence(sequence) {
+		var sequence_string = "";
+		for (var i = 0; i < sequence.length; i = i + 1) {
+			sequence_string = sequence_string + sequence[i];
+		}
+		console.log(sequence_string);
+	}
+
+	// prints sequences loop
+	function print_sequences(title) {
+		console.log(title);
+		for (var i = 0; i <number_of_sequences; i = i + 1) {
+			print_sequence(sequences[i]);
+		}
+		console.log("");
+	}
+
+	// run generations
+	function run_generations() {
+		for (var i = 0; i < number_of_generations; i = i + 1) {
+			// each generation
+			for (var ii = 0; ii < sequences.length; ii = ii + 1) {
+				// each sequence
+				for (var iii = 0; iii < sequences[ii].length; iii = iii + 1) {
+					// each base
+					if (Math.random() < mutation_rate) {
+						sequences[ii][iii] = random_base(sequences[ii][iii]);
+					}
+				}
+			}
+
+		}
+	}
+
+
+
+	generate_first_generation();
+	print_sequences("Original 0");
+	run_generations();
+	print_sequences("After 100 generations");
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

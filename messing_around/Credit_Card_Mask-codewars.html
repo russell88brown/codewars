@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		
+		var compiled_string;
+	function maskify(cc) {
+		if (cc.length > 4) {
+			var compiled_string = cc.substr(cc.length - 4 , cc.length);
+		}
+		else {
+      		var compiled_string = cc;
+   		 }
+		for (var i = 0; i < cc.length - 4; i = i + 1) {
+			var compiled_string = ('#' + compiled_string);
+		}
+    	
+			console.log(compiled_string);
+}
+	
+	maskify('12345678910');
+	maskify('12345');
+	maskify('healloworld');
+	maskify('12');
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
+
