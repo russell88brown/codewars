@@ -21,7 +21,77 @@ var maze = [[1,1,1,1,1,1,1],
             [1,0,0,0,0,0,1],
             [1,2,1,0,1,0,1]];
 
+console.log(mazeRunner(maze,["N","N","N","N","N","E","E","E","E","E"])) // "Finish", "Expected Finish");
+var yCoord = 0;
+var xCoord = 0;
+var outcome = null;
+var n = (maze[0].length) + 1;
 
+function mazeRunner(gienMaze, directions) {
+      var directionsDictionary = {N:[-1,0], S:[1,0], E:[0,1], W:[0,-1]};
+      console.log('start')
+      outcome = null;
+      determinePosition();
+      for (index = 0; index < directions.length; index++) {
+            console.log('step: ' + index +  ' towards: ' + directions[index]);
+            console.log('current position :' + yCoord + ':' + xCoord);
+            nextYCoord = directionsDictionary[directions[index]][0];
+            nextXCoord = directionsDictionary[directions[index]][1];
+            checkX = xCoord.toString() + nextXCoord
+            checkY = yCoord.toString() + nextYCoord
+            console.log('moving: ' + nextYCoord + ':' + nextXCoord);
+            checkBoundary();
+            if (outcome != null) return outcome;
+            checkNextPosition();
+            if (outcome != null) return outcome;
+            xCoord = checkX;
+            yCoord = checkY;
+            console.log('took a step')
+      }
+      outcome = 'lost';
+      return outcome;
+}
+
+function determinePosition() {
+      console.log('determining the position');
+      for (i = 0; i < 7; i++) {
+            for (ii = 0; ii < 7; ii++) {
+                  if (maze[i][ii] == 2) {
+                        yCoord = [i];
+                        xCoord = [ii];
+                        console.log('your start position is: ' + i + ' : ' + ii)
+                        return
+                  } else {
+                        null
+                  }
+            }
+      }
+      console.log('couldnt find the start point')
+}
+
+function checkBoundary() {
+      if (checkY < 0 || checkY > 6) outcome = 'dead';
+      if (checkX < 0 || checkX > 6) outcome = 'dead';
+      return
+}
+
+function checkNextPosition() {
+      nextPosition = maze[checkY][checkX]
+      if (nextPosition == 1) {
+            console.log('you walked into a wall');
+            outcome = 'dead';
+      } else if (nextPosition == 2) {
+            console.log('you found the start again');
+            outcome = 'dead';
+      } else if (nextPosition == 3) {
+            console.log('you found the finnish');
+            outcome = 'Finish';
+      } else {
+            console.log('keep walking');
+      }
+}
+
+/*
 var position = [0,0];
 var directionsDictionary = {N:[-1,0], S:[1,0], E:[0,1], W:[0,-1]}; //object dictionary for coords
 var nextPosition = [];
@@ -81,7 +151,6 @@ function mazeRunner(givenMaze, yourDirections) {
       }
       outcome = (outcome!=false) ? 'lost': outcome ;
       return outcome;
-      var outcome = false
 }
 
 //mazeRunner(maze,["N","N","N","N","N","E","E","E","E","E"]) // "Finish", "Expected Finish");
@@ -91,6 +160,7 @@ mazeRunner(maze,["N","N","N","W","W"]) // "Dead", "Expected Dead");
 mazeRunner(maze,["N","N","N","N","N","E","E","S","S","S","S","S","S"]) // "Dead", "Expected Dead");
 mazeRunner(maze,["N","E","E","E","E"]) // "Lost", "Expected Lost");
 
+*/
 
 /*
 var position = [6,0]; //original position
